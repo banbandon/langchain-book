@@ -11,3 +11,11 @@ app = App(token=os.environ.get("SLACK_BOT_TOKEN"))
 # アプリを起動します
 if __name__ == "__main__":
     SocketModeHandler(app, os.environ["SLACK_APP_TOKEN"]).start()
+    
+    
+    
+@app.event("app_mention")
+def say_hello(event, say):
+    user = event['user']
+    say(f"Hi there, <@{user}>!")
+    
